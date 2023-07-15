@@ -318,7 +318,6 @@ input:focus, textarea:focus, *:required:focus{border-color:#B946AD !important;}
 .overlay::after{color:inherit; background-color:rgba(0,0,0,.55);}
 .overlay.light{color:#474747;}
 .overlay.light::after{background-color:rgba(255,255,255,.7);}
-.htg{position: absolute; right: 10%; top: 40%; z-index: 100; display: inline-block; width: 50%; height: auto; text-align: center;}
 
 .coloured{color:#FFFFFF; background-color:#A032AB;}
 .coloured .btn, .coloured .btn.inverse:hover{color:#FFFFFF; background-color:#161C21; border-color:#161C21;}
@@ -445,11 +444,7 @@ table a, #comments a{background-color:inherit;}
 }
 .waveWrapper {
     overflow: hidden;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
+    position: static;
     margin: auto;
 }
 .waveWrapperInner {
@@ -457,24 +452,25 @@ table a, #comments a{background-color:inherit;}
     width: 100%;
     overflow: hidden;
     height: 100%;
-    bottom: -1px;
+    top: 0%;
     background-image: linear-gradient(to top, #1a3f76 20%, #27273c 80%);
+	background-size: 100% 100%;
 }
 .bgTop {
-    z-index: 15;
+    z-index: 2;
     opacity: 0.5;
 }
 .bgMiddle {
-    z-index: 10;
+    z-index: 1;
     opacity: 0.75;
 }
 .bgBottom {
-    z-index: 5;
+    z-index: 0;
 }
 
 
 .wave {
-    position: absolute;
+    position: static;
     left: 0;
     width: 200%;
     height: 100%;
@@ -507,74 +503,74 @@ table a, #comments a{background-color:inherit;}
 
 /* Image Cover */
 .image--cover {
-	width: 30%;
+	width: 80%;
 	/* height: 100%; */
 	border-radius: 50%;
 	margin: 5%;
 	padding: 1%;
-	position: absolute;
+	position: relative;
 	top: 10%;
-	left: 1%;
-	z-index: 20;
+	left: 5%;
 	object-fit: cover;
 	object-position: center right;
+	z-index: 3;
   }
 
-.flex-container {
-display: flex;
-flex-direction: column;
-min-height: 100vh;
+.flex-container1 {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
 }
 
-.htg h1 {
-	font-family: Roboto;
-	position: absolute;
-	top: -40%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	font-size: 30px;
-	user-select: none;
-	background-color: #e7e7e7;
-	transition: all 0.3s ease-in-out;
+.flex-container2 {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
 }
-  
-.htg h1:before {
-	content: "";
-	position: absolute;
-	height: 120%;
-	transition: all 0.3s ease-in-out;
-	z-index: -1;
-	left: 0;
-	top: -10%;
-	width: 0;
-	background-color: #00bcd4;
-	padding: 21px 0 21px 42px;
-}
-  
-.htg h1:after {
-	  content: "";
-	  position: absolute;
-	  height: 2px;
-	  background-color: #00bcd4;
-	  transition: all 0.3s ease-in-out;
-	  bottom: -21px;
-	  right: 0;
-	  width: 0;
-}
-  
-.htg h1:hover {
-	  color: white;
-}  
 
-.htg h1:hover:before {
-		width: 100%;
-		padding: 0;
-		top: 0;
+.major-projects-box {
+	flex: 1;
+	order: 1;
 }
-  
-.htg h1:hover:after {
-		width: 100%;
+
+.image-box {
+	flex: 2;
+	order: 1;
 }
+
+.intro-box {
+	flex: 3;
+	order: 2;
+}
+
+
+.flex-intro {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	flex-direction: column;
+}
+
+.intro-para {
+	flex: 1;
+	order: 1;
+}
+
+.intro-cv {
+	flex: 1;
+	order: 2;
+	margin: 2px;
+	margin: 1rem;
+}
+
+.intro-social-media {
+	flex: 1;
+	order: 3;
+	position: static;
+	margin: 1rem;
+}
+
+
 
 
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,500,700&display=swap");
@@ -596,7 +592,7 @@ body {
 } */
 
 .social {
-	position: absolute;
+	position: static;
 	top: 75%;
 	right: 30%;
 	z-index: 50;
@@ -614,7 +610,6 @@ body {
 	transition: all 0.3s ease-in-out;
 	box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.1);
 	
-	z-index: 30;
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
@@ -746,8 +741,8 @@ body {
 @media screen and (max-width:750px){
 	.imgl, .imgr{display:inline-block; float:none; margin:0 0 10px 0;}
 	.fl_left, .fl_right{display:block; float:none;}
-	.group .group > *:last-child, .clear .clear > *:last-child, .clear .group > *:last-child, .group .clear > *:last-child{margin-bottom:0; z-index: 1;}/* Experimental - Needs more testing in different situations, stops double margin when stacking */
-	.one_half, .one_third, .two_third, .one_quarter, .two_quarter, .three_quarter{display:block; float:none; width:auto; margin:0 0 30px 0;}
+	.group .group > *:last-child, .clear .clear > *:last-child, .clear .group > *:last-child, .group .clear > *:last-child{margin-bottom:10px; z-index: 1;}/* Experimental - Needs more testing in different situations, stops double margin when stacking */
+	.one_half, .one_third, .two_third, .one_quarter, .two_quarter, .three_quarter{display:block; float:center; width:auto; margin:0 0 30px 0;}
 
 	#topbar{text-align:center;}
 	#topbar > div:first-of-type ul{margin:0 0 10px 0;}

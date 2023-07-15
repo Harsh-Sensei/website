@@ -1,7 +1,5 @@
 .htg_wrapper{
     position: absolute;
-    top: 100%;
-    left: 65%;
     transform: translate(-50%, -50%);
   }
   
