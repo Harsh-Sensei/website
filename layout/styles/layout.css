@@ -11,6 +11,7 @@ File: Layout CSS
 
 @import url("fontawesome-free/css/fontawesome-all.min.css");
 @import url("framework.css");
+@import url('https://fonts.cdnfonts.com/css/sober');
 
 /* Rows
 --------------------------------------------------------------------------------------------------------------- */
@@ -95,7 +96,7 @@ File: Layout CSS
 .team figure *{margin:0; padding:0;}
 .team figure a{}
 .team figure img{}
-.team figure figcaption{padding:20px 10px; line-height:1;}
+.team figure figcaption{padding:20px 10px; line-height:1;color: white;}
 .team figure strong{display:block; margin-bottom:8px; font-size:1.4rem; font-weight:400;}
 .team figure em{display:block; font-style:normal; font-size:.8rem;}
 
@@ -325,10 +326,10 @@ input:focus, textarea:focus, *:required:focus{border-color:#B946AD !important;}
 .btn, .btn.inverse:hover{color:#FFFFFF; background-color:#B946AD; border-color:#B946AD;}
 .btn:hover, .btn.inverse{color:inherit; background-color:transparent; border-color:inherit;}
 
-.imgover:hover::before{background-color:rgba(185,70,173,.5);/* #B946AD */}
+.imgover:hover::before{background-color:#6CA0E280;/* #B946AD */}
 .imgover, .imgover:hover::after{color:#FFFFFF;}
 
-.heading.underline::after{background-color:#A032AB;}
+.heading.underline::after{background-color:#6CA0E2;}
 
 
 /* Rows */
@@ -359,10 +360,10 @@ input:focus, textarea:focus, *:required:focus{border-color:#B946AD !important;}
 #introblocks figure figcaption{color:#FFFFFF; background-color:rgba(0,0,0,.55);}
 
 .imgroup article a{color:inherit;}
-.imgroup article:hover a{color:#B946AD;}
+.imgroup article:hover a{color:#6CA0E280;}
 
 .team figure{box-shadow:0px 0px 15px rgba(0,0,0,.1);}
-.team figure:hover{color:#FFFFFF; background-color:#B946AD;}
+.team figure:hover{color:#FFFFFF; background-color:#6CA0E280;}
 
 #testimonials blockquote{color:#FFFFFF; background-color:rgba(255,255,255,.5);}
 #testimonials blockquote::before{color:rgba(0,0,0,.2);}
@@ -721,7 +722,9 @@ body {
 }
 
 
-
+.other-stuff-head {
+	font-size: 2rem;
+}
 /* Media Queries
 --------------------------------------------------------------------------------------------------------------- */
 @-ms-viewport{width:device-width;}
@@ -822,7 +825,7 @@ body {
 
 @media screen and (max-width:615px){
 	.waveWrapperInner{
-		height: 130%;
+		height: 150%;
 	}
 	.gap{
 		height: 100px;
