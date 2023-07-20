@@ -804,6 +804,10 @@ body {
 	#latest article .excerpt{padding:0;}
 	#latest article .excerpt time{display:none;}
 	#latest article footer{text-align:left;}
+	.sensei-domain-txt{
+		font-size:0.8rem;
+		letter-spacing: 0.3rem;
+	}
 }
 
 /* Other
@@ -825,7 +829,7 @@ body {
 
 @media screen and (max-width:615px){
 	.waveWrapperInner{
-		height: 150%;
+		height: 140%;
 	}
 	.gap{
 		height: 100px;
