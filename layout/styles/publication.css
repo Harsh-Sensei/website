@@ -1,0 +1,70 @@
+.publication-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-bottom: 3rem;
+}
+
+.publication-box {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px; /* Rounded corners */
+    padding: 2rem;
+    margin: 10px 0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.publication-box:hover {
+    transform: scale(1.05); /* Enlarge the box on hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a stronger shadow on hover */
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.publication-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0;
+}
+
+.publication-author {
+    font-size: 1em;
+    color: #777;
+}
+
+.publication-description {
+    margin: 10px 0;
+}
+
+.abstract-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px; /* Rounded corners for the button */
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.abstract {
+    display: none;
+    margin-top: 20px; /* Increase the gap between abstract and the link */
+}
+
+.abstract.active {
+    display: block;
+}
+
+.paper-link {
+    display: block;
+    margin-top: 10px; /* Increase the gap between link and the previous content */
+}
