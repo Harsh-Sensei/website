@@ -1,392 +1,1373 @@
 <!DOCTYPE html>
-<html lang="">
-<!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
+<html lang="en">
 <head>
-<title>Harsh Shah</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-<link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
-<link href="layout/styles/buttons.css" rel="stylesheet" type="text/css" media="all">
-<link href="layout/styles/gallery.css" rel="stylesheet" type="text/css" media="all">
-
-<link href="https://fonts.cdnfonts.com/css/interstellar-erosion" rel="stylesheet">
-<link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet'>
-<link rel="icon" href="favicon.ico?v=2" />
-<link href="https://fonts.cdnfonts.com/css/sober" rel="stylesheet">
-                
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harsh Shah | Portfolio</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #6CA0E2;
+            --secondary: #3273dc;
+            --dark: #333;
+            --light: #f9f9f9;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--secondary);
+            transition: var(--transition);
+        }
+        
+        a:hover {
+            color: var(--primary);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+            padding-bottom: 10px;
+            position: relative;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            height: 4px;
+            width: 60px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 30px;
+            text-transform: uppercase;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: var(--secondary);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Header & Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+        
+        .header.scrolled {
+            padding: 10px 0;
+            background-color: rgba(255, 255, 255, 0.98);
+        }
+        
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--dark);
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+        .nav-list {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-item {
+            margin-left: 30px;
+        }
+        
+        .nav-link {
+            position: relative;
+            color: var(--dark);
+            font-weight: 500;
+            padding: 5px 0;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 2px;
+            width: 0;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(108,160,226,0.8) 100%);
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .hero-text {
+            flex: 1;
+            padding-right: 50px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .hero-image img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 8px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: var(--dark);
+        }
+        
+        .hero-description {
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+            color: var(--dark);
+            max-width: 600px;
+        }
+        
+        .typed-text {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .social-links {
+            display: flex;
+            margin-top: 30px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: white;
+            color: var(--primary);
+            border-radius: 50%;
+            margin-right: 15px;
+            transition: var(--transition);
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-5px);
+        }
+        
+        /* About Section */
+        .about {
+            background: linear-gradient(to bottom, #f9f9f9 0%, #e9f0f9 100%);
+        }
+        
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .about-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e1e1e1;
+        }
+        
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 15px 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #777;
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .tab-btn::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .tab-btn:hover {
+            color: var(--primary);
+        }
+        
+        .tab-btn.active {
+            color: var(--primary);
+        }
+        
+        .tab-btn.active::after {
+            width: 100%;
+        }
+        
+        .tab-content {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .tab-pane {
+            display: none;
+        }
+        
+        .tab-pane.active {
+            display: block;
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .tab-pane h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .terminal-text {
+            font-family: 'Consolas', 'Monaco', monospace;
+            background-color: #2b2b2b;
+            color: #f0f0f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            line-height: 1.6;
+        }
+        
+        .terminal-text b {
+            color: #6CA0E2;
+        }
+        
+        .terminal-text a {
+            color: #75e1ff;
+            text-decoration: underline;
+        }
+        
+        /* Projects Section */
+        .projects {
+            background-color: #fff;
+        }
+        
+        .project-categories {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .category-btn {
+            padding: 8px 20px;
+            margin: 5px;
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .category-btn:hover,
+        .category-btn.active {
+            background: var(--primary);
+            color: #fff;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background-color: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+        
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(108, 160, 226, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+        
+        .project-link {
+            display: inline-block;
+            width: 45px;
+            height: 45px;
+            background-color: #fff;
+            border-radius: 50%;
+            margin: 0 5px;
+            line-height: 45px;
+            text-align: center;
+            color: var(--primary);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        
+        .project-link:hover {
+            background-color: var(--dark);
+            color: #fff;
+        }
+        
+        .project-content {
+            padding: 20px;
+        }
+        
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .project-category {
+            display: inline-block;
+            background-color: rgba(108, 160, 226, 0.1);
+            color: var(--primary);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .project-description {
+            margin-top: 10px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        /* Team Section */
+        .team {
+            background: linear-gradient(to bottom, #f9f9f9 0%, #e9f0f9 100%);
+        }
+        
+        .team-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.1);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+            color: #fff;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        
+        .gallery-title {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        /* Other Stuff Section */
+        .other-stuff {
+            background-color: #fff;
+        }
+        
+        .other-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .other-category {
+            margin-bottom: 30px;
+        }
+        
+        .other-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .other-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 3px;
+            width: 40px;
+            background-color: var(--primary);
+        }
+        
+        .other-list {
+            list-style: none;
+        }
+        
+        .other-item {
+            margin-bottom: 10px;
+        }
+        
+        .other-link {
+            display: block;
+            padding: 8px 0;
+            transition: var(--transition);
+        }
+        
+        .other-link:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+        
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(to top, #f9f9f9 0%, #e9f0f9 100%);
+        }
+        
+        .contact-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .contact-info {
+            max-width: 600px;
+        }
+        
+        .contact-text {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .contact-email {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: var(--primary);
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: #2b2b2b;
+            color: #f0f0f0;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 45px;
+            height: 45px;
+            background-color: var(--primary);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        /* Responsive Design */
+        @media screen and (max-width: 992px) {
+            .hero-content {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                margin-top: 50px;
+            }
+            
+            .hero-description {
+                margin: 0 auto 40px;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+            
+            .nav-list {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                height: 0;
+                background-color: #fff;
+                flex-direction: column;
+                overflow: hidden;
+                transition: var(--transition);
+                z-index: 999;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-list.show {
+                height: auto;
+                padding: 20px 0;
+            }
+            
+            .nav-item {
+                margin: 10px 0;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media screen and (max-width: 576px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-image img {
+                width: 220px;
+                height: 220px;
+            }
+            
+            .btn {
+                padding: 10px 25px;
+                font-size: 0.8rem;
+            }
+            
+            .projects-grid, .other-grid, .team-gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .section-title {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
 </head>
-<body id="top" style="background-color:rgb(255, 255, 255);">
-
-
-<!-- Top Background Image Wrapper -->
-<div class="bgded" style="background-image:'images/mrt/mrt_team_photo.png';"> 
-   
-  <div class="wrapper row1" style="z-index: 100;">
-    <header id="header" class="hoc clear" style="margin:0px 2%;">
-      <div id="logo" class="fl_left"> 
-        <h1 class="sensei-domain-txt" style="font-family: Incosolata; text-align: left; letter-spacing: 0.5rem;"><a href="index.html">Sensei's Domain</a></h1>
-      </div>
-      <nav id="mainav" class="fl_right"> 
-         
-        <ul class="clear" style="float: right; margin-right: 10px;">
-          <li class="active"><a href="index.html">Home</a></li>
-          <!-- <li><a class="drop" href="#">Courses</a>
-            <ul>
-              <li><a href="pages/gallery.html">CS754 Advanced Image Processing</a></li>
-              <li><a href="pages/full-width.html">CS215 Data Analysis and Interpretation</a></li>
-              <li><a href="pages/sidebar-left.html">IE609 Mathematical Optimization Techniques</a></li>
-            </ul>
-          </li> -->
-      
-          <li><a class="drop" href="files/Quadeye_Internship_Certificate_Harsh_Shah.pdf">Professional Experience</a>
-            <ul>
-              <li><a class="drop" href="files/AFAR_cambridge_hatice_gunes_reference_letter.pdf">Internship at AFAR Lab, Cambridge University</a>
-                <ul>
-                  <li><a href="files/AFAR_cambridge_hatice_gunes_reference_letter.pdf">Open Source Development on HARMONI</a></li>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo">Harsh <span>Shah</span></a>
+            
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="#ongoing-projects" class="nav-link">Ongoing Projects</a></li>
+                    <li class="nav-item"><a href="#projects" class="nav-link">Past Projects</a></li>
+                    <li class="nav-item"><a href="#publications" class="nav-link">Publications</a></li>
+                    <li class="nav-item"><a href="#other-stuff" class="nav-link">Other Stuff</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
-              </li>
-              <li><a href="files/Quadeye_Internship_Certificate_Harsh_Shah.pdf">Systems Engineer at Quadeye</a>
-                <ul>
-                  <li><a href="files/A_start_jian_su_reference_letter.pdf">Ultra low-latency NIC driver dev</a></li>
-                </ul>
-              </li>
-              <li><a href="files/A_start_jian_su_reference_letter.pdf">Internship at A-star</a>
-                <ul>
-                  <li><a href="#">Natural Language to SQL queries</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li><a class="drop" href="#">Research</a>
-            <ul>
-              <li><a href="https://github.com/Harsh-Sensei/ImageCaptioning">Image Captioning using Cross-Modal Distillation</a></li>
-              <li><a href="https://github.com/Harsh-Sensei/Confidence-Matters-DG">Evicting Gating Network of Mixture-of-Experts for DG</a></li>
-              <li><a href="https://github.com/Harsh-Sensei/LightEstimation_Unity">Coherent Rendering for Mixed Reality</a></li>
-            </ul>
-          </li>
-          <li><a class="drop" href="pages/publication.html">Publications/Posters</a>
-            <ul>
-              <li><a href="pages/publication.html">Range-search using Adaptive Group Testing</a></li>
-              <li><a href="pages/publication.html">Evicting Gating Networks from Mixture-Of-Experts for Domain Generalization </a></li>
-              <li><a href="pages/publication.html">Coherent Rendering for Mixed Reality </a></li>
-
-            </ul>
-          </li>
-          <li><a class="drop">Other activities</a>
-            <ul>
-              <li><a href="https://www.facebook.com/erciitb/">Electronic and Robotics Club convener</a></li>
-              <li><a href="https://iitbmartian.github.io/">Mars Rover Team</a></li>
-            </ul>
-          </li>
-          <!-- <li><a class="drop">About</a></li> -->
-        </ul>
-         
-      </nav>
+            </nav>
+        </div>
     </header>
-  </div>
-   
-</div>
-<!-- End Top Background Image Wrapper -->
- 
-<hr>
 
-<div class="flex-container1">
-  <div class="image-box">
-    <img src="images/me2.jpeg" alt="" class="image--cover"/>
-  </div>
-  <div class="intro-box">
-    <div class="flex-intro">
-      <div class="intro-para" style="z-index: 3;">
-        <article style="text-align: center;">
-          <h3 class="heading" style="font-size: 30px;"> I'm <a style="font-family: Incosolata;font-size: 4rem; color: #ffffff;">HARSH SHAH...</a></h3>
-          <p style="font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New; font-size: 1.5rem; line-height: 1.2;">... a masters student majoring in<br><a style="font-size: 30px; color: #ffffff;">
-            Machine Learning</a> at <br> 
-            <a style="font-size: 30px; color: #ffffff;">Carnegie Mellon University, Pittsburgh</a>
-          </p>
-        </article>
-      </div>
-      <div class="intro-cv" style="z-index: 3;">
-        <div class="link_wrapper">
-          <a class="htg" href="./files/HarshShah_resume.pdf">Resume</a>
-          <div class="htg_icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268.832 268.832">
-              <path d="M265.17 125.577l-80-80c-4.88-4.88-12.796-4.88-17.677 0-4.882 4.882-4.882 12.796 0 17.678l58.66 58.66H12.5c-6.903 0-12.5 5.598-12.5 12.5 0 6.903 5.597 12.5 12.5 12.5h213.654l-58.66 58.662c-4.88 4.882-4.88 12.796 0 17.678 2.44 2.44 5.64 3.66 8.84 3.66s6.398-1.22 8.84-3.66l79.997-80c4.883-4.882 4.883-12.796 0-17.678z"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-      <div class="intro-social-media" style="z-index: 3;">
-        <section class="social">
-          <div>
-            <div class="button">
-              <div class="icon">
-                <i class="fab fa-instagram"></i>
-              </div>
-              <span><a href="https://www.instagram.com/htg_sensei/">Instagram</a></span>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Hi, I'm <span class="typed-text">Harsh Shah</span></h1>
+                    <h2 class="hero-subtitle">Enjoying MS in Machine Learning at Carnegie Mellon University</h2>
+                    <p class="hero-description">
+                        My research interests primarily revolve around statistics and machine learning, with a particular focus on their intersection with robotics.
+                    </p>
+                    <a href="./files/HarshShah_resume.pdf" class="btn">Download Resume</a>
+                    
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/harsh-shah-297240221/" class="social-link" target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/Harsh-Sensei" class="social-link" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.instagram.com/htg_sensei/" class="social-link" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/harsh.shah.372/" class="social-link" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="hero-image">
+                    <img src="images/me2.jpeg" alt="Harsh Shah">
+                </div>
             </div>
-  
-            <div class="button">
-              <div class="icon">
-                <i class="fab fa-facebook-f"></i>
-              </div>
-              <span><a href="https://www.facebook.com/harsh.shah.372/">Facebook</a></span>
-            </div>
-  
-            <div class="button">
-              <div class="icon">
-                <i class="fab fa-linkedin" ></i>
-              </div>
-              <span><a href="https://www.linkedin.com/in/harsh-shah-297240221/">LinkedIn</a></span>
-            </div>
-  
-            <div class="button">
-              <div class="icon">
-                <i class="fab fa-github"></i>
-              </div>
-              <span><a href="https://github.com/Harsh-Sensei">Github</a></span>
-            </div>
-          </div>
-        </section> 
-      </div> 
-    </div>
-  </div>
-</div>
-
-<div class="waveWrapper waveAnimation">
-  <div class="waveWrapperInner bgTop">
-    <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
-  </div>
-
-  <div class="waveWrapperInner bgMiddle">
-    <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
-  </div>
-
-  <div class="waveWrapperInner bgBottom">
-    <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
-  </div>
-</div>
-
-<hr class="btmspace-20per">
-<div class="gap"></div>
-
-<div style="background-image: linear-gradient(#ffffff 0%, #6CA0E2 100%); padding-bottom: 2rem;">
-  <div class="hoc container clear" style="padding: 0 0"> 
-     
-    <div class="sectiontitle">
-      <p class="heading underline font-x2" style="color: black;">About Me</p>
-    </div>
-  </div>
- <p style="font-family: Consolas;font-size: 1.5rem; color:black; margin-left: 10%; margin-right: 10%"> 
-  <b>harsh_shah:~/Introduction$</b> I am a graduate student pursuing Master's in Machine Learning  program at Carnegie Mellon University (CMU). My research interests primarily revolve around statistics and machine learning, with a particular focus on their intersection with robotics.
-  Recently, I have been working in <a href="https://autonlab.org/">Auton Lab</a> (advised by <a href="https://www.cs.cmu.edu/~schneide/">Jeff Schneider</a>) with the self-driving group to improve language conditioned autonomous driving via evolutionary search on diffusion policies (more info <a href="https://diffusion-es.github.io/">here</a>). Parallely, I am working on a XR project for making neuroscience study easier and accessible to all (<a href="https://youtu.be/vCJg5FXyf2I?si=C9FG1b9Kw6mWkURz">Demo</a>). You can find some of my previous projects <a href="#major_projects">here</a>. <br><br>
-  
-  <b>harsh_shah:~/MarsRoverTeam$</b> In my undergrad I led the <a href="https://iitbmartian.github.io/">Mars Rover Team</a> at IITB, where more than 50 skilled undergraduates worked collaboratively in various fields like mechanical, electrical, and software engineering to build an autonomous rover. The team's mission is to tackle the intricate challenges of space exploration presented by international rover competitions such as the <a href="https://urc.marssociety.org/">University Rover Challenge (URC)</a>, <a href="https://roverchallenge.eu/en/main-page/">European Rover Challenge (ERC)</a>, and others. The most notable achievements made by the team under my leadership include Best Navigation Awards in European Rover Challenge(ERC) and International Rover Challenge(IRC). Beyond these competitions, the team's vision extends to developing fully autonomous rovers capable of efficiently navigating uncharted terrains and performing intricate tasks. I envision the team harnessing its expertise to explore applications in defense, hazardous environment exploration, the quest for signs of life, and various other related domains. <br><br>
-  
-  <b>harsh_shah:~/Teaching$</b> I have had the privilege of contributing as a teaching assistant for three prominent courses, Software Systems Lab, Foundations of Learning Agents and Advanced Image Processing. As a TA, I engaged with over 150 students, and designed autograded assignments that extended the reach of educational materials to students beyond the immediate class batch. I also occasionally contribute technical content through blogs, some of which you can find over <a href="#TA">here</a>...<a class="about_me"><a></a>
-
-  </p>
-
-</div>
-
-<div  style="background-image: linear-gradient(#ffffff 0%, #6CA0E2 100%); padding-bottom: 2rem;">
-  <div class="sectiontitle">
-    <p class="heading underline font-x2" style="color: black; margin-top: 8rem">My Team (Mars Rover Team)</p>
-  </div>
-  <div class="gallery-image">
-    <div class="img-box">
-      <img src="images/mrt/ISRO.jpeg" alt="" />
-      <div class="transparent-box">
-        <div class="caption">
-          <p>Me presenting our rover to Dr. S. Somanath (Chairman of ISRO)</p>
         </div>
-      </div> 
-    </div>
-    <div class="img-box">
-      <img src="images/mrt/The Team.jpg" alt="" />
-      <div class="transparent-box">
-        <div class="caption">
-          <p>THE Mars Rover Team :)</p>
-        </div>
-      </div> 
-    </div>
-    <div class="img-box">
-      <img src="images/mrt/rover_small.png" alt="" />
-      <div class="transparent-box">
-        <div class="caption">
-          <p>Our beloved!</p>
-        </div>
-      </div>
-    </div>
-    <div class="img-box">
-      <img src="images/mrt/mrt_urc.jpg" alt="" />
-      <div class="transparent-box">
-        <div class="caption">
-          <p>MRT at URC compeition (Utah, USA)</p>
-        </div>
-      </div>
-    </div>
-
-  </div>
-  <p style="font-family: Consolas;font-size: 1.5rem; color:black; margin-left: 10%; margin-right: 10%"> 
-    To know more about MRT, visit our <a href="https://iitbmartian.github.io/">website</a>...<a class="about_me"></a>
-  </p>
-</div>
-
-<div  style="background-image: linear-gradient(#ffffff 0%, #6CA0E2 100%); padding-bottom: 2rem;">
-  <div class="hoc container clear">
-    
-    <figcaption class="sectiontitle">
-      <p class="heading underline font-x2" style="margin-top: 1%;color: black" id="major_projects">Research Projects</p>
-    </figcaption>
-    <section id="introblocks">
-      <ul class="nospace group team">
-        <li class="one_quarter first">
-          <figure><a class="imgover" href="https://github.com/Harsh-Sensei/Confidence-Matters-DG"><img src="images/moe.png" alt="" style="border-radius: 10px;"></a>
-            <figcaption>
-              <h6 class="heading">Evicting Gating Networks from Mixture-Of-Experts for Domain Generalization</h6>
-              <div>
-                <p>Colaborated with Mr. Vibhav Vineet (Microsoft Research) and Prof. Yogesh Rawat (University of Central Florida)</p>
-              </div>
-            </figcaption>
-          </figure>
-        </li>
-        <li class="one_quarter">
-          <figure><a class="imgover" href="https://github.com/Harsh-Sensei/LightEstimation_Unity.git"><img src="images/coherent.png" alt="" style="border-radius: 10px;"></a>
-            <figcaption>
-              <h6 class="heading">Coherent Rendering for Mixed Reality</h6>
-              <div>
-                <p>Worked with Prof. Parag Chaudhuri on a research project at IITB</p>
-              </div>
-            </figcaption>
-          </figure>
-        </li>
-        <li class="one_quarter">
-          <figure><a class="imgover" href="https://github.com/Harsh-Sensei/NL2SQL"><img src="images/nl.png" alt="" style="border-radius: 10px;"></a>
-            <figcaption>
-              <h6 class="heading">NL2SQL</h6>
-              <div>
-                <p>Worked with NLP team of Dr. Jian SU, as a research intern at A*STAR</p>
-              </div>
-            </figcaption>
-          </figure>
-        </li>
-        <li class="one_quarter">
-          <figure><a class="imgover" href="https://github.com/micolspitale93/HARMONI"><img src="images/harmoni.png" alt="" style="border-radius: 10px;"></a>
-            <figcaption>
-              <h6 class="heading">HARMONI</h6>
-              <div>
-                <p>Worked with Dr. Micol Spitale, as a research intern at AFAR labs, University of Cambridge </p>
-              </div>
-            </figcaption>
-          </figure>
-        </li>
-      </ul>
     </section>
-  </div>
-</div>
- 
- 
-<div class="wrapper row2" style="background-image: linear-gradient(#ffffff 0%, #6CA0E2 100%); padding-bottom: 2rem;">
-  <div class="hoc container clear"> 
-     
-    <div class="sectiontitle">
-      <p class="heading underline font-x2" style="color: black">Other Projects</p>
-    </div>
-    <ul class="nospace group team">
-      <li class="one_quarter first">
-        <figure><a class="imgover" href="https://github.com/calcudexter/cg-assgn3.git"><img src="images/opengl.png" alt=""></a>
-          <figcaption><strong>Scene Rendering-Phong Illumination</strong> <em>C++, OpenGL</em></figcaption>
-        </figure>
-      </li>
-      <li class="one_quarter">
-        <figure><a class="imgover" href="#"><img src="images/orbslam.png" alt="" style="filter: invert(1)"></a>
-          <figcaption><strong>ORB-SLAM</strong> <em>Python, ROS</em></figcaption>
-        </figure>
-      </li>
-      <li class="one_quarter">
-        <figure><a class="imgover" href="https://github.com/Harsh-Sensei/Healthcare_Application"><img src="images/quaranteam.png" alt="" style="filter: invert(1)"></a>
-          <figcaption><strong>Healthcare Application with Contact Tracing</strong> <em>Java, Android Studio</em></figcaption>
-        </figure>
-      </li>
-      <li class="one_quarter">
-        <figure><a class="imgover" href="https://github.com/Harsh-Sensei/Video-Denoising-using-Low-Rank-Matrix-Completion"><img src="images/matrix_completion.png" alt=""></a>
-          <figcaption><strong>Video Denoising-Low Rank matrix completion</strong> <em>Matlab</em></figcaption>
-        </figure>
-      </li>
-    </ul>
-     
-  </div>
-</div>
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-tabs">
+                    <button class="tab-btn active" data-tab="introduction">Introduction</button>
+                    <button class="tab-btn" data-tab="mars-rover">Hobbies</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div class="tab-pane active" id="introduction">
+                        <h3>About Me</h3>
+                        <p>I am a graduate student pursuing Master's in Machine Learning program at Carnegie Mellon University (CMU). I love to involve myself with complex and interesting systems, and autonomous robots are no different.</p>
+                        <p>Currently, I have been working in <a href="https://autonlab.org/">Auton Lab</a> (advised by <a href="https://www.cs.cmu.edu/~schneide/">Jeff Schneider</a>) with the self-driving group to improve language conditioned autonomous driving via evolutionary search on diffusion policies (more info <a href="https://diffusion-es.github.io/">here</a>). (<a href="https://youtu.be/vCJg5FXyf2I?si=C9FG1b9Kw6mWkURz">Demo</a>).</p>
+                        <p>Earlier, I use to lead <a href="https://iitbmartian.github.io/">Mars Rover Team</a> at IITB, where we used make autonomous rovers to rule over unknown terrains. </p>
+                        <p>Even now and then I work on building projects that interest me, and can find some of them in the projects section.</p>
+                    </div>
+                    
+                    <div class="tab-pane" id="mars-rover">
+                        <h3>Hobbies</h3>
+                        <p>Love playing table tennis (a good player I am), which has helped me many other racket sports: squash, tennis, badminton.</p>
+                        <p>Spent much of my spare time in childhood playing FPS games (CSGO, Valorant, Overwatch, etc.), and I am living in my childhood.</p>
+                        <p>You defeat me in Super Mario, I give you a free hat.</p> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ongoing Projects Section -->
+    <section id="ongoing-projects" class="projects section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Ongoing Projects</h2>
+            </div>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/diffusion-es.png" alt="Autonomous Driving">
+                        <div class="project-overlay">
+                            <a href="https://diffusion-es.github.io/" class="project-link" target="_blank">
+                                <i class="fas fa-link"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Language Conditioned Autonomous Driving</h3>
+                        <span class="project-category">Robotics</span>
+                        <span class="project-category">Machine Learning</span>
+                        <p class="project-description">Working at Auton Lab with Prof. Jeff Schneider to improve language conditioned autonomous driving via evolutionary search on diffusion based policies.</p>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/neuexplore.png" alt="XR Neuroscience">
+                        <div class="project-overlay">
+                            <a href="https://youtu.be/vCJg5FXyf2I?si=C9FG1b9Kw6mWkURz" class="project-link" target="_blank">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">XR for Visualizing Brain MRI</h3>
+                        <span class="project-category">Mixed Reality</span>
+                        <span class="project-category">Education</span>
+                        <p class="project-description">Working on an XR project for making neuroscience study easier and accessible to all. Creating interactive visualizations of neural structures and processes.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                  <div class="project-image">
+                      <img src="images/lesearch-logo.svg" alt="LeSearch">
+                      <div class="project-overlay">
+                          <a href="https://lesearch.app" class="project-link" target="_blank">
+                              <i class="fas fa-link"></i>
+                          </a>
+                      </div>
+                  </div>
+                  <div class="project-content">
+                      <h3 class="project-title">LeSearch</h3>
+                      <span class="project-category">LLM-Agent</span>
+                      <p class="project-description">Platform that provides personalized academic paper reading experience to every researcher</p>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Past Projects</h2>
+            </div>
+            
+            <div class="project-categories">
+                <button class="category-btn active" data-filter="all">All</button>
+                <button class="category-btn" data-filter="research">Research</button>
+                <button class="category-btn" data-filter="computer-vision">Computer Vision</button>
+                <button class="category-btn" data-filter="mixed-reality">Mixed Reality</button>
+                <button class="category-btn" data-filter="nlp">NLP</button>
+                <button class="category-btn" data-filter="other">Other</button>
+            </div>
+            
+            <div class="projects-grid">
+                <!-- Research Projects -->
+                <div class="project-card" data-category="research computer-vision">
+                    <div class="project-image">
+                        <img src="images/moe.png" alt="Mixture-Of-Experts">
+                        <div class="project-overlay">
+                            <a href="https://github.com/Harsh-Sensei/Confidence-Matters-DG" class="project-link" target="_blank">
+                                <i class="fas fa-link"></i>
+                            </a>
+                            <a href="https://github.com/Harsh-Sensei/Confidence-Matters-DG" class="project-link" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Evicting Gating Networks from Mixture-Of-Experts for Domain Generalization</h3>
+                        <span class="project-category">Research</span>
+                        <span class="project-category">Computer Vision</span>
+                        <p class="project-description">Collaborated with Microsoft Research and University of Central Florida on domain generalization techniques.</p>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="research mixed-reality">
+                    <div class="project-image">
+                        <img src="images/coherent.png" alt="Coherent Rendering">
+                        <div class="project-overlay">
+                            <a href="https://github.com/Harsh-Sensei/LightEstimation_Unity.git" class="project-link" target="_blank">
+                                <i class="fas fa-link"></i>
+                            </a>
+                            <a href="https://github.com/Harsh-Sensei/LightEstimation_Unity.git" class="project-link" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Coherent Rendering for Mixed Reality</h3>
+                        <span class="project-category">Research</span>
+                        <span class="project-category">Mixed Reality</span>
+                        <p class="project-description">Worked with Prof. Parag Chaudhuri on a research project at IITB.</p>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="research nlp">
+                    <div class="project-image">
+                        <img src="images/nl.png" alt="NL2SQL">
+                        <div class="project-overlay">
+                            <a href="https://github.com/Harsh-Sensei/NL2SQL" class="project-link" target="_blank">
+                                <i class="fas fa-link"></i>
+                            </a>
+                            <a href="https://github.com/Harsh-Sensei/NL2SQL" class="project-link" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">NL2SQL</h3>
+                        <span class="project-category">Research</span>
+                        <span class="project-category">NLP</span>
+                        <p class="project-description">Worked with NLP team of Dr. Jian SU, as a research intern at A*STAR.</p>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="research mixed-reality">
+                    <div class="project-image">
+                        <img src="images/harmoni.png" alt="HARMONI">
+                        <div class="project-overlay">
+                            <a href="https://github.com/micolspitale93/HARMONI" class="project-link" target="_blank">
+                                <i class="fas fa-link"></i>
+                            </a>
+                            <a href="https://github.com/micolspitale93/HARMONI" class="project-link" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">HARMONI</h3>
+                        <span class="project-category">Research</span>
+                        <span class="project-category">Mixed Reality</span>
+                        <p class="project-description">Worked with Dr. Micol Spitale, as a research intern at AFAR labs, University of Cambridge.</p>
+                    </div>
+                </div>
+                
+                <!-- Other Projects -->
+                <div class="project-card" data-category="other computer-vision">
+                    <div class="project-image">
+                        <img src="images/opengl.png" alt="Scene Rendering">
+                        <div class="project-overlay">
+                            <a href="https://github.com/calcudexter/cg-assgn3.git" class="project-link" target="_blank">
+                                <i class="fas fa-link"></i>
+                            </a>
+                            <a href="https://github.com/calcudexter/cg-assgn3.git" class="project-link" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Scene Rendering-Phong Illumination</h3>
+                        <span class="project-category">Computer Graphics</span>
+                        <p class="project-description">Implemented scene rendering with Phong illumination model using C++ and OpenGL.</p>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="other computer-vision">
+                    <div class="project-image">
+                        <img src="images/orbslam.png" alt="ORB-SLAM">
+                        <div class="project-overlay">
+                            <a href="#" class="project-link">
+                                <i class="fas fa-link"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">ORB-SLAM</h3>
+                        <span class="project-category">Computer Vision</span>
+                        <span class="project-category">Robotics</span>
+                        <p class="project-description">Implementation of ORB-SLAM using Python and ROS for visual mapping and localization.</p>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="other">
+                    <div class="project-image">
+                        <img src="images/quaranteam.png" alt="Healthcare Application">
+                        <div class="project-overlay">
+                            <a href="https://github.com/Harsh-Sensei/Healthcare_Application" class="project-link" target="_blank">
+                                <i class="fas fa-link"></i>
+                            </a>
+                            <a href="https://github.com/Harsh-Sensei/Healthcare_Application" class="project-link" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Healthcare Application with Contact Tracing</h3>
+                        <span class="project-category">Mobile Development</span>
+                        <p class="project-description">Java-based Android application for healthcare monitoring and contact tracing.</p>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="other computer-vision">
+                    <div class="project-image">
+                        <img src="images/matrix_completion.png" alt="Video Denoising">
+                        <div class="project-overlay">
+                            <a href="https://github.com/Harsh-Sensei/Video-Denoising-using-Low-Rank-Matrix-Completion" class="project-link" target="_blank">
+                                <i class="fas fa-link"></i>
+                            </a>
+                            <a href="https://github.com/Harsh-Sensei/Video-Denoising-using-Low-Rank-Matrix-Completion" class="project-link" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Video Denoising-Low Rank Matrix Completion</h3>
+                        <span class="project-category">Computer Vision</span>
+                        <span class="project-category">Signal Processing</span>
+                        <p class="project-description">Implementation of video denoising using low-rank matrix completion in Matlab.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="section" style="background-color: #fff;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Publications & Posters</h2>
+            </div>
+            
+            <div style="max-width: 900px; margin: 0 auto;">
+                <div style="background-color: #f9f9f9; border-radius: 12px; padding: 25px; margin-bottom: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: var(--transition);" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 25px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.05)';">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--dark);">Group Testing for Accurate and Efficient Range-Based Near Neighbor Search :
+                      An Adaptive Binary Splitting Approach</h3>
+                    <p style="font-style: italic; margin-bottom: 15px; color: #666;">Published to European Conference on Computer Vision 2024</p>
+                    <p style="margin-bottom: 20px; color: #333;">A novel approach to optimize range search operations using adaptive group testing techniques, resulting in significant performance improvements for spatial databases.</p>
+                    <div>
+                        <a href="https://arxiv.org/abs/2311.02573" class="btn" style="padding: 8px 20px; font-size: 0.85rem;">View Publication</a>
+                    </div>
+                </div>
+                
+                
+                <div style="background-color: #f9f9f9; border-radius: 12px; padding: 25px; margin-bottom: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: var(--transition);" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 25px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.05)';">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--dark);">Coherent Rendering for Mixed Reality</h3>
+                    <p style="font-style: italic; margin-bottom: 15px; color: #666;">Technical Report, 2022</p>
+                    <p style="margin-bottom: 20px; color: #333;">A framework for achieving coherent rendering in mixed reality environments, focusing on accurate light estimation and shadow consistency between virtual and real objects.</p>
+                    <div>
+                        <a href="/images/Coherent rendering for Mixed Reality.png" class="btn" style="padding: 8px 20px; font-size: 0.85rem;">View Poster</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
+    <!-- Other Stuff Section -->
+    <section id="other-stuff" class="other-stuff section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Other Stuff</h2>
+            </div>
+            
+            <div class="other-grid">
+                <div class="other-category">
+                    <h3 class="other-title">Teaching Assistant</h3>
+                    <ul class="other-list">
+                        <li class="other-item">
+                            <a href="https://github.com/Harsh-Sensei/CS747-PA3.git" class="other-link">CS 747 - Foundations of Learning Agents</a>
+                        </li>
+                        <li class="other-item">
+                            <a href="https://github.com/Harsh-Sensei/CS104_TAship.git" class="other-link">CS 104 - Software Systems Lab</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="other-category">
+                    <h3 class="other-title">Blogs</h3>
+                    <ul class="other-list">
+                        <li class="other-item">
+                            <a href="https://medium.com/@3502.stkabirdin/natural-language-to-sql-queries-d5ac1dda8404" class="other-link">Natural Language to SQL</a>
+                        </li>
+                        <li class="other-item">
+                            <a href="https://medium.com/@3502.stkabirdin/introduction-to-visual-odometry-47bcab3aa213" class="other-link">Visual Odometry</a>
+                        </li>
+                        <li class="other-item">
+                            <a href="https://medium.com/@3502.stkabirdin/compositional-learning-and-analysis-ada6ae2a2f1" class="other-link">Compositional Analysis</a>
+                        </li>
+                        <li class="other-item">
+                            <a href="https://medium.com/@3502.stkabirdin/implementing-batched-backpropagation-from-scratch-36717dd048c7" class="other-link">Batched Backpropagation from Scratch</a>
+                        </li>
+                        <li class="other-item">
+                            <a href="https://medium.com/@3502.stkabirdin/domain-generalization-in-computer-vision-b64b73f6fa86" class="other-link">Domain Generalization</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="other-category">
+                    <h3 class="other-title">Course Notes</h3>
+                    <ul class="other-list">
+                        <li class="other-item">
+                            <a href="https://drive.google.com/drive/folders/1Xpv1eepqRnHBg0MPsN_U1mIptKvPVAh5?usp=sharing" class="other-link">CS215: Data Analysis and Interpretation</a>
+                        </li>
+                        <li class="other-item">
+                            <a href="https://drive.google.com/drive/folders/1ikhZhThb3P28h9Dq54dAralAqfq3wM-H?usp=sharing" class="other-link">CS207: Discrete Structures</a>
+                        </li>
+                        <li class="other-item">
+                            <a href="https://drive.google.com/file/d/1kY2-E2LKcO80fUj_7bcRehsZWxXi0hkz/view?usp=sharing" class="other-link">CS754: Advanced Image Processing</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="other-category">
+                    <h3 class="other-title">Miscellaneous</h3>
+                    <ul class="other-list">
+                        <li class="other-item">
+                            <a href="https://docs.google.com/presentation/d/1TqNdVnbBjl4d8xi3iSYIq_Fz_4lt2XWmnttrj3IkCsY/edit?usp=sharing" class="other-link">Slides - Image Captioning</a>
+                        </li>
+                        <li class="other-item">
+                            <a href="https://drive.google.com/file/d/1BWAoPPlxzWLSV1VYE2czw4VLs1_X5cYE/view?usp=sharing" class="other-link">Article - Python X Arduino</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Me</h2>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <p class="contact-text">Say hello to me at...</p>
+                    <p class="contact-email">
+                        <i class="far fa-envelope"></i> prodigy.harsh18@gmail.com
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- <div class="wrapper bgded overlay" style="background-image:url('images/demo/backgrounds/01.png');">
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Harsh Shah. All Rights Reserved.</p>
+        </div>
+    </footer>
 
-     
+    <!-- Back to Top Button -->
+    <a href="#home" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
 
-</div> -->
- 
- 
-<div class="bgded overlay row4" style="background-image:linear-gradient(to top, #6CA0E2 0%, #ffffff 100%);">
-  <hr class="btmspace-80">
-  <div class="sectiontitle">
-    <p class="heading underline font-x2" style="color: black">Other Stuff</p>
-  </div>
-  <footer id="footer" class="hoc clear"> 
-    <div class="one_quarter first">
-      <h6 class="heading" style="font-size: 2rem; color: black;">Teaching Assistant</h6>
-      <ul class="nospace linklist">
-        <li><a href="https://github.com/Harsh-Sensei/CS747-PA3.git" id="TA">CS 747 - Foundations of Learning Agents</a></li>
-        <li><a href="https://github.com/Harsh-Sensei/CS104_TAship.git">CS 104 - Software Systems Lab</a></li>
-      </ul>
-    </div>
-
-
-    <div class="one_quarter">
-      <h6 class="heading" style="font-size: 2rem; color: black;">Blogs</h6>
-      <ul class="nospace linklist">
-        <li><a href="https://medium.com/@3502.stkabirdin/natural-language-to-sql-queries-d5ac1dda8404">Natural Language to SQL</a></li>
-        <li><a href="https://medium.com/@3502.stkabirdin/introduction-to-visual-odometry-47bcab3aa213">Visual Odometry</a></li>
-        <li><a href="https://medium.com/@3502.stkabirdin/compositional-learning-and-analysis-ada6ae2a2f1">Compositional Analysis</a></li>
-        <li><a href="https://medium.com/@3502.stkabirdin/implementing-batched-backpropagation-from-scratch-36717dd048c7">Batched Backpropagation from Scratch</a></li>
-        <li><a href="https://medium.com/@3502.stkabirdin/domain-generalization-in-computer-vision-b64b73f6fa86">Domain Generalization</a></li>
-      </ul>
-    </div>
-
-    <div class="one_quarter">
-      <h6 class="heading" style="font-size: 2rem; color: black;">Course Notes</h6>
-      <ul class="nospace linklist">
-        <li><a href="https://drive.google.com/drive/folders/1Xpv1eepqRnHBg0MPsN_U1mIptKvPVAh5?usp=sharing">CS215:Data analysis and Interpretation</a></li>
-        <li><a href="https://drive.google.com/drive/folders/1ikhZhThb3P28h9Dq54dAralAqfq3wM-H?usp=sharing">CS207:Discrete Structures</a></li>
-        <li><a href="https://drive.google.com/file/d/1kY2-E2LKcO80fUj_7bcRehsZWxXi0hkz/view?usp=sharing">CS754:Advanced Image Processing</a></li>
-      </ul>
-    </div>
-
-    <div class="one_quarter">
-      <h6 class="heading" style="font-size: 2rem; color: black;">Miscellaneous</h6>
-      <ul class="nospace linklist">
-        <li><a href="https://docs.google.com/presentation/d/1TqNdVnbBjl4d8xi3iSYIq_Fz_4lt2XWmnttrj3IkCsY/edit?usp=sharing">Slides - Image Captioning</a></li>
-        <li><a href="https://drive.google.com/file/d/1BWAoPPlxzWLSV1VYE2czw4VLs1_X5cYE/view?usp=sharing">Article - Python X Arduino</a></li>
-      </ul>
-    </div>
-  </footer>
-</div>
- 
- 
-<div class="wrapper row5">
-  <div id="copyright" class="hoc clear nospace"> 
-
-    <p class="fl_left far fa-envelope rgtspace-5" style="font-size : 1.5rem;"> Contact me : prodigy dot harsh18 at gmail.com </p>
-
-  </div>
-</div>
-
-<a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
-<!-- JAVASCRIPTS -->
-<script src="layout/scripts/jquery.min.js"></script>
-<script src="layout/scripts/jquery.backtotop.js"></script>
-<script src="layout/scripts/jquery.mobilemenu.js"></script>
+    <!-- JavaScript -->
+    <script>
+        // Select elements
+        const header = document.querySelector('.header');
+        const navToggle = document.querySelector('.nav-toggle');
+        const navList = document.querySelector('.nav-list');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const backToTop = document.querySelector('.back-to-top');
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+        
+        // Toggle mobile navigation
+        navToggle.addEventListener('click', () => {
+            navList.classList.toggle('show');
+        });
+        
+        // Close mobile nav when link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('show');
+            });
+        });
+        
+        // Smooth scroll to sections
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Sticky header & Back to top button
+        window.addEventListener('scroll', () => {
+            // Sticky header
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            // Back to top button
+            if (window.scrollY > 300) {
+                backToTop.classList.add('active');
+            } else {
+                backToTop.classList.remove('active');
+            }
+            
+            // Active nav link
+            const scrollPosition = window.scrollY;
+            
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+        
+        // Project filtering
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                // Get filter value
+                const filterValue = btn.getAttribute('data-filter');
+                
+                // Filter projects
+                projectCards.forEach(card => {
+                    const categories = card.getAttribute('data-category');
+                    
+                    if (filterValue === 'all' || categories.includes(filterValue)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Tab functionality
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons and panes
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabPanes.forEach(pane => pane.classList.remove('active'));
+                
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                // Show corresponding pane
+                const tabId = btn.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+    </script>
 </body>
 </html>
